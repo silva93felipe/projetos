@@ -1,0 +1,15 @@
+@ApiProjetos_HostAddress = http://localhost:5276
+
+GET {{ApiProjetos_HostAddress}}/Projeto/GetAllPedidos
+Accept: application/json
+
+###
+
+POST {{ApiProjetos_HostAddress}}/Projeto
+content-type: application/json
+
+{
+    "Nome": "Projeto 1"
+}
+
+###

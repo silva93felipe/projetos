@@ -1,0 +1,24 @@
+@ApiPedidos_HostAddress = http://localhost:5072
+
+POST {{ApiPedidos_HostAddress}}/Pedido
+content-type: application/json
+
+{
+    "items": 
+    [
+        {
+            "projetoId": 1,
+            "quantidade": 1
+        },
+        {
+            "projetoId": 1,
+            "quantidade": 2
+        },
+        {
+            "projetoId": 1,
+            "quantidade": 5
+        }       
+    ]
+}
+
+###
