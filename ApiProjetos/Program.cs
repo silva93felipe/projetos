@@ -1,25 +1,25 @@
+using ApiProjetos.Context;
+using ApiProjetos.Contratos;
+using ApiProjetos.Repositories;
+using ApiProjetos.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IProjetoRepository, ProjetoRepository>();
+builder.Services.AddScoped<IProjetoService, ProjetoService>();
+builder.Services.AddDbContext<ProjetoContext>(opt => {
+    opt.UseNpgsql("Server=localhost;Port=5432;Database=Projetos;User Id=postgres;Password=postgres");
+});
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -1,11 +1,15 @@
+using ApiProjetos.Contratos;
 using ApiProjetos.Dto;
 using ApiProjetos.Models;
-using ApiProjetos.Repositories;
-
 namespace ApiProjetos.Services
 {
-    public class ProjetoService{
-        private readonly ProjetoRepository _projetoRepository = new();
+    public class ProjetoService : IProjetoService{
+        private readonly IProjetoRepository _projetoRepository;
+        public ProjetoService(IProjetoRepository projetoRepository)
+        {
+            _projetoRepository = projetoRepository;
+        }
+
         public void Create(ProjetoDto projetoDto){
             Projeto projeto = new(projetoDto.Nome);
             if( !projeto.IsValid() ){
@@ -15,11 +19,11 @@ namespace ApiProjetos.Services
         }
 
         public IEnumerable<Pedido> GetAllPedidos(){
-            return Enumerable.Empty<Pedido>();
+            return _projetoRepository.GetAllPedidos();
         }
 
         public IEnumerable<Pedido> GetAllPedidosByProjetoId(int projetoId){
-            return Enumerable.Empty<Pedido>();
+            return _projetoRepository.GetAllPedidosByProjetoId(projetoId);
         }
     }
 }

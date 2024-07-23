@@ -1,5 +1,5 @@
+using ApiPedidos.Contratos;
 using ApiPedidos.Dto;
-using ApiPedidos.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiPedidos.Controllers;
@@ -8,7 +8,11 @@ namespace ApiPedidos.Controllers;
 [Route("[controller]")]
 public class PedidoController : ControllerBase
 {
-    private readonly PedidoService _pedidoService = new PedidoService();
+    private readonly IPedidoService _pedidoService;
+    public PedidoController(IPedidoService pedidoService)
+    {
+        _pedidoService = pedidoService;
+    }
     [HttpPost]
     public IActionResult Create(PedidoDto pedidoDto)
     {

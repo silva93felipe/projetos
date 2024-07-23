@@ -1,5 +1,5 @@
+using ApiProjetos.Contratos;
 using ApiProjetos.Dto;
-using ApiProjetos.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiProjetos.Controllers;
@@ -8,9 +8,10 @@ namespace ApiProjetos.Controllers;
 [Route("[controller]")]
 public class ProjetoController : ControllerBase
 {
-    private readonly ProjetoService _projetoService = new ProjetoService();
-    public ProjetoController()
+    private readonly IProjetoService _projetoService;
+    public ProjetoController(IProjetoService projetoService)
     {
+        _projetoService = projetoService;
     }
 
     [HttpPost]

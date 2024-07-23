@@ -1,12 +1,13 @@
 
 
 using System.Text;
+using ApiPedidos.Contratos;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 
 namespace ApiPedidos.Queue
 {
-    public class Producer{
+    public class Producer : IBus{
 
         public void Publish<T>(T message)
         {

@@ -4,7 +4,7 @@ using RabbitMQ.Client.Events;
 
 namespace ApiIntegracao.Queue
 {
-    public class Consumer : BackgroundService{
+    public class Consumer : BackgroundService, IBus{
         private readonly IConnection _connectionRabbitmq;
         private readonly IModel _channelRabbitmq;
         public Consumer()
@@ -18,7 +18,7 @@ namespace ApiIntegracao.Queue
             _channelRabbitmq.QueueDeclare("create_pedido", false, false, false, null);
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        public void BasicConsume()
         {
             var consumer = new EventingBasicConsumer(_channelRabbitmq);
             consumer.Received += (sender, eventArgs) => 
@@ -28,6 +28,11 @@ namespace ApiIntegracao.Queue
                 Console.WriteLine("Lido " + contentString);
             };
             _channelRabbitmq.BasicConsume("create_pedido", false, consumer);
+        }
+
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            BasicConsume();
             return Task.CompletedTask;
         }
     }

@@ -1,10 +1,21 @@
+using ApiPedidos.Contratos;
 using ApiPedidos.Models;
+using ApiProjetos.Context;
 
 namespace ApiPedidos.Repositories;
 
-public class PedidoRepository{
-    private static readonly List<Pedido> pedidos = [];
+public class PedidoRepository : IPedidoRepository{
+    private readonly PedidoContext _pedidoContext;
+    public PedidoRepository(PedidoContext pedidoContext)
+    {
+        _pedidoContext = pedidoContext;
+    }
     public void Create(Pedido pedido){
-        pedidos.Add(pedido);
+        _pedidoContext.Add(pedido);
+        Save();
+    }
+
+    public void Save(){
+        _pedidoContext.SaveChanges();
     }
 }

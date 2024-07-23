@@ -1,13 +1,16 @@
+using ApiPedidos.Contratos;
 using ApiPedidos.Dto;
 using ApiPedidos.Models;
-using ApiPedidos.Queue;
-using ApiPedidos.Repositories;
 
 namespace ApiPedidos.Service;
-
-public class PedidoService{
-    private readonly PedidoRepository _pedidoRepository = new PedidoRepository();
-    private readonly Producer _producer = new Producer();
+public class PedidoService : IPedidoService{
+    private readonly IBus _producer;
+    private readonly IPedidoRepository _pedidoRepository;
+    public PedidoService(IPedidoRepository pedidoRepository, IBus producer)
+    {
+        _pedidoRepository = pedidoRepository;
+        _producer = producer;
+    }
     public void Create(PedidoDto pedidoDto){
         Pedido newPedido = new();
         pedidoDto.Items.ForEach(i => {
