@@ -6,7 +6,6 @@ namespace ApiProjetos.Contratos
     public interface IProjetoService
     {
         public void Create(ProjetoDto projetoDto);
-        public IEnumerable<Pedido> GetAllPedidos();
-        public IEnumerable<Pedido> GetAllPedidosByProjetoId(int projetoId);
+        public IEnumerable<Projeto> GetAll();
     }
 }  

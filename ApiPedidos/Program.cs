@@ -9,8 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+//builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+builder.Services.AddScoped<IPedidoRepository, PedidoRepositoryInMemory>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
+builder.Services.AddScoped<IProjetoService, ProjetoService>();
 builder.Services.AddSingleton<IBus, Producer>();
 builder.Services.AddDbContext<PedidoContext>(opt =>{
     opt.UseNpgsql("Server=localhost;Port=5432;Database=Pedidos;User Id=postgres;Password=postgres");

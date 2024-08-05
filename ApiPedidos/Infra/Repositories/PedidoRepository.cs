@@ -18,4 +18,8 @@ public class PedidoRepository : IPedidoRepository{
     public void Save(){
         _pedidoContext.SaveChanges();
     }
+
+    public IEnumerable<Pedido>  GetAll(){
+        return _pedidoContext.Pedido;
+    }
 }

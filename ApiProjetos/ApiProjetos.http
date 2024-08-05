@@ -13,3 +13,8 @@ content-type: application/json
 }
 
 ###
+
+GET {{ApiProjetos_HostAddress}}/Projeto
+Accept: application/json
+
+###

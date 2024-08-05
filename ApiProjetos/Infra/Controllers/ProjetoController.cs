@@ -9,9 +9,11 @@ namespace ApiProjetos.Controllers;
 public class ProjetoController : ControllerBase
 {
     private readonly IProjetoService _projetoService;
-    public ProjetoController(IProjetoService projetoService)
+    private readonly IPedidoService _pedidoService;
+    public ProjetoController(IProjetoService projetoService, IPedidoService pedidoService)
     {
         _projetoService = projetoService;
+        _pedidoService = pedidoService;
     }
 
     [HttpPost]
@@ -20,18 +22,23 @@ public class ProjetoController : ControllerBase
         _projetoService.Create(projetoDto);
         return Created(string.Empty, new HttpReponse("OK"));
     }
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        return Ok(new HttpReponse("OK", _projetoService.GetAll()));
+    }
 
     [HttpGet]
     [Route("GetAllPedidos")]
     public IActionResult GetAllPedidos()
     {
-        return Ok(new HttpReponse("OK", _projetoService.GetAllPedidos()));
+        return Ok(new HttpReponse("OK", _pedidoService.GetAll()));
     }
 
     [HttpGet("{projetoId:int}")]
     [Route("GetAllPedidos")]
     public IActionResult GetAllPedidosByProjetoId(int projetoId)
     {
-        return Ok(new HttpReponse("OK", _projetoService.GetAllPedidosByProjetoId(projetoId)));
+        return Ok(new HttpReponse("OK", _pedidoService.GetAllByProjetoId(projetoId)));
     }
 }

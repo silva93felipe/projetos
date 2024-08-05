@@ -19,5 +19,10 @@ public class PedidoService : IPedidoService{
         });
         _pedidoRepository.Create(newPedido);
         _producer.Publish(newPedido);
-    }   
+    }
+
+    public IEnumerable<Pedido> GetAll()
+    {
+        return _pedidoRepository.GetAll();
+    }
 }

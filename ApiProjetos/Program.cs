@@ -8,8 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IProjetoRepository, ProjetoRepository>();
+//builder.Services.AddScoped<IProjetoRepository, ProjetoRepository>();
+builder.Services.AddScoped<IProjetoRepository, ProjetoRepositoryInMemory>();
 builder.Services.AddScoped<IProjetoService, ProjetoService>();
+builder.Services.AddScoped<IPedidoService, PedidoService>();
 builder.Services.AddDbContext<ProjetoContext>(opt => {
     opt.UseNpgsql("Server=localhost;Port=5432;Database=Projetos;User Id=postgres;Password=postgres");
 });

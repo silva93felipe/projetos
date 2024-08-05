@@ -9,9 +9,11 @@ namespace ApiPedidos.Controllers;
 public class PedidoController : ControllerBase
 {
     private readonly IPedidoService _pedidoService;
-    public PedidoController(IPedidoService pedidoService)
+    private readonly IProjetoService _projetoService;
+    public PedidoController(IPedidoService pedidoService, IProjetoService projetoService)
     {
         _pedidoService = pedidoService;
+        _projetoService = projetoService;
     }
     [HttpPost]
     public IActionResult Create(PedidoDto pedidoDto)
@@ -23,5 +25,6 @@ public class PedidoController : ControllerBase
     [HttpGet]
     public void GetAllProjetos()
     {
+        _projetoService.GetAll();
     }
 }

@@ -6,5 +6,6 @@ namespace ApiPedidos.Contratos
     {
         public void Create(Pedido pedido);
         public void Save();
+        public IEnumerable<Pedido> GetAll();
     }
 }

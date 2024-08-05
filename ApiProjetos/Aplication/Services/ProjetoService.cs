@@ -18,12 +18,9 @@ namespace ApiProjetos.Services
             _projetoRepository.Create(projeto);
         }
 
-        public IEnumerable<Pedido> GetAllPedidos(){
-            return _projetoRepository.GetAllPedidos();
-        }
-
-        public IEnumerable<Pedido> GetAllPedidosByProjetoId(int projetoId){
-            return _projetoRepository.GetAllPedidosByProjetoId(projetoId);
+        public IEnumerable<Projeto> GetAll()
+        {
+             return _projetoRepository.GetAll();
         }
     }
 }

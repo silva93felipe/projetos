@@ -22,3 +22,7 @@ content-type: application/json
 }
 
 ###
+
+GET {{ApiPedidos_HostAddress}}/Pedido
+
+### 
