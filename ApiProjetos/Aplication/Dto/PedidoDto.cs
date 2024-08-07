@@ -1,6 +1,6 @@
 namespace ApiProjetos.Dto;
 
-public class PedidoDto(){
+public class PedidoDto{
      public int Id { get; set; }
     public List<PedidoItem> Itens { get; private set; } = new();
 };

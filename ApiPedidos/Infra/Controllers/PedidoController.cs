@@ -23,8 +23,16 @@ public class PedidoController : ControllerBase
     }
 
     [HttpGet]
-    public void GetAllProjetos()
+    public IActionResult GetAll()
     {
-        _projetoService.GetAll();
+        Console.WriteLine("Chamou......");
+        return Created("", new HttpReponse("OK", _pedidoService.GetAll()));
+    }
+    [HttpGet]
+    [Route("GetAllProjetos")]
+    public IActionResult GetAllProjetos()
+    {
+        //return Created("", new HttpReponse("OK",  _projetoService.GetAll()));
+        return Ok();
     }
 }

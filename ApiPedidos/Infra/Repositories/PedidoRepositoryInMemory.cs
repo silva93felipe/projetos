@@ -5,7 +5,7 @@ using ApiProjetos.Context;
 namespace ApiPedidos.Repositories;
 
 public class PedidoRepositoryInMemory : IPedidoRepository{
-    private static readonly List<Pedido> Pedidos = [];
+    private static readonly List<Pedido> Pedidos = new List<Pedido>();
     public void Create(Pedido pedido){
         Pedidos.Add(pedido);
     }
@@ -14,7 +14,5 @@ public class PedidoRepositoryInMemory : IPedidoRepository{
         //_pedidoContext.SaveChanges();
     }
 
-    public IEnumerable<Pedido>  GetAll(){
-        return Pedidos;
-    }
+    public IEnumerable<Pedido>  GetAll() => Pedidos;
 }

@@ -30,9 +30,9 @@ public class ProjetoController : ControllerBase
 
     [HttpGet]
     [Route("GetAllPedidos")]
-    public IActionResult GetAllPedidos()
+    public async Task<IActionResult> GetAllPedidos()
     {
-        return Ok(new HttpReponse("OK", _pedidoService.GetAll()));
+        return Ok(new HttpReponse("OK", await _pedidoService.GetAll()));
     }
 
     [HttpGet("{projetoId:int}")]

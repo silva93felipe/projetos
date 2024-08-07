@@ -21,8 +21,5 @@ public class PedidoService : IPedidoService{
         _producer.Publish(newPedido);
     }
 
-    public IEnumerable<Pedido> GetAll()
-    {
-        return _pedidoRepository.GetAll();
-    }
+    public IEnumerable<Pedido> GetAll() => _pedidoRepository.GetAll();
 }

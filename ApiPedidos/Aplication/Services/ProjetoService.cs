@@ -8,7 +8,7 @@ namespace ApiPedidos.Service
         public async void GetAll(){
             using var httpClient = new HttpClient();
             var result = await httpClient.GetAsync(baseUrl);
-                Console.WriteLine(result.Content.ReadAsStreamAsync().Result.GetType());
+            Console.WriteLine(result.Content);
             if(result.IsSuccessStatusCode){
                 var json = await result.Content.ReadFromJsonAsync<ProjetoDto>();
             }
